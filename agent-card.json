@@ -1,0 +1,231 @@
+{
+  "name": "Hermes-Service-Provider-Alpha",
+  "description": "On-chain security intelligence layer for autonomous agents. Provides token security audits, wallet forensics, transaction simulation, honeypot detection, address risk scoring, and market data. All endpoints are paid via x402 protocol on Base. Built for agents that need verifiable on-chain intelligence before executing transactions.",
+  "version": "1.0.0",
+  "payment_protocol": "x402",
+  "settlement_chain_id": "8453",
+  "settlement_asset": "0x833589fCD6eDb6E08f4c7C32D4f71b54bdA02913",
+  "services": {
+    "generate_report": {
+      "price_usdc": "0.10",
+      "endpoint": "/api/v1/generate-report"
+    }
+  },
+  "url": "https://economic-agent-369.freysa.dev",
+  "documentationUrl": "https://economic-agent-369.freysa.dev/openapi.json",
+  "iconUrl": "https://economic-agent-369.freysa.dev/static/icon.svg",
+  "provider": {
+    "organization": "Freysa Data Services",
+    "url": "https://economic-agent-369.freysa.dev",
+    "contactEmail": "admin@economic-agent-369.freysa.dev"
+  },
+  "supportedInterfaces": [
+    {
+      "url": "https://economic-agent-369.freysa.dev/",
+      "protocolBinding": "HTTP+JSON",
+      "protocolVersion": "1.0.0"
+    },
+    {
+      "url": "https://economic-agent-369.freysa.dev/mcp",
+      "protocolBinding": "HTTP+JSON",
+      "protocolVersion": "1.0.0"
+    },
+    {
+      "url": "https://economic-agent-369.freysa.dev/.well-known/x402",
+      "protocolBinding": "HTTP+JSON",
+      "protocolVersion": "2.0"
+    }
+  ],
+  "capabilities": {
+    "streaming": false,
+    "pushNotifications": false,
+    "extendedAgentCard": false
+  },
+  "defaultInputModes": ["application/json", "text/plain"],
+  "defaultOutputModes": ["application/json"],
+  "payment": {
+    "protocol": "x402",
+    "version": 2,
+    "network": "eip155:8453",
+    "currency": "USDC",
+    "currencyAddress": "0x833589fCD6eDb6E08f4c7C32D4f71b54bdA02913",
+    "wallet": "0x6D8abB282C35D45E3C773aD8a67b288Ac35fd1e9",
+    "facilitator": "https://facilitator.payai.network"
+  },
+  "securitySchemes": {
+    "x402": {
+      "type": "http",
+      "scheme": "x402",
+      "description": "Pay-per-call via x402 protocol. Base64-encoded PAYMENT-SIGNATURE header with EIP-3009 TransferWithAuthorization."
+    },
+    "bearer": {
+      "type": "http",
+      "scheme": "bearer",
+      "bearerFormat": "JWT",
+      "description": "Optional API key for authenticated users."
+    }
+  },
+  "security": [{ "x402": [] }],
+  "skills": [
+    {
+      "id": "honeypot-check",
+      "name": "Honeypot Check",
+      "description": "Analyzes a token contract for buy/sell restrictions, hidden tax mechanisms, and honeypot characteristics. Returns buy_tax, sell_tax, can_sell, and risk score.",
+      "tags": ["security", "tokens", "honeypot", "analysis"],
+      "examples": ["Check if 0x833589fCD6eDb6E08f4c7C32D4f71b54bdA02913 is a honeypot"],
+      "inputModes": ["application/json"],
+      "outputModes": ["application/json"],
+      "price": "$0.01"
+    },
+    {
+      "id": "address-risk",
+      "name": "Address Risk Scoring",
+      "description": "Scores an Ethereum address for risk factors including prior scams, phishing links, token holdings, and transaction history. Returns a risk score 0-100 and evidence list.",
+      "tags": ["security", "address", "risk", "scoring"],
+      "examples": ["Score 0x742d35Cc6634C0532925a3b844Bc454e4438f44e for risk"],
+      "inputModes": ["application/json"],
+      "outputModes": ["application/json"],
+      "price": "$0.01"
+    },
+    {
+      "id": "wallet-forensics",
+      "name": "Wallet Forensics",
+      "description": "Deep forensic analysis of a wallet's transaction history, token flows, interactions with known bad actors, and behavioral patterns. Returns structured forensic report.",
+      "tags": ["security", "wallet", "forensics", "analysis"],
+      "examples": ["Run forensics on wallet 0x742d35Cc6634C0532925a3b844Bc454e4438f44e"],
+      "inputModes": ["application/json"],
+      "outputModes": ["application/json"],
+      "price": "$0.05"
+    },
+    {
+      "id": "approval-risk",
+      "name": "Approval Risk Check",
+      "description": "Scans a wallet for risky token approvals, infinite approvals, and approvals to known malicious contracts. Returns a prioritized list of approvals to revoke.",
+      "tags": ["security", "approvals", "risk", "wallet"],
+      "examples": ["Check all risky approvals for 0x742d35Cc6634C0532925a3b844Bc454e4438f44e"],
+      "inputModes": ["application/json"],
+      "outputModes": ["application/json"],
+      "price": "$0.01"
+    },
+    {
+      "id": "pre-trade-check",
+      "name": "Pre-Trade Safety Check",
+      "description": "Comprehensive pre-trade analysis combining honeypot check, address risk, wallet forensics, and liquidity analysis into a single go/no-go recommendation.",
+      "tags": ["security", "trading", "preflight", "comprehensive"],
+      "examples": ["Run pre-trade check on token 0x833589fCD6eDb6E08f4c7C32D4f71b54bdA02913"],
+      "inputModes": ["application/json"],
+      "outputModes": ["application/json"],
+      "price": "$0.10"
+    },
+    {
+      "id": "agent-preflight",
+      "name": "Agent Preflight",
+      "description": "Full risk assessment for AI agents planning transactions. Includes token analysis, wallet risk, approvals, and gas estimation. Returns a structured risk verdict with confidence score.",
+      "tags": ["security", "agents", "preflight", "automation"],
+      "examples": ["Preflight agent transaction: buy 100 USDC of token 0x1234"],
+      "inputModes": ["application/json"],
+      "outputModes": ["application/json"],
+      "price": "$0.25"
+    },
+    {
+      "id": "analyze",
+      "name": "Token Analysis",
+      "description": "Deep token contract analysis including bytecode inspection, proxy detection, ownership, and supply mechanics. Returns structured token intelligence report.",
+      "tags": ["security", "tokens", "analysis", "contracts"],
+      "examples": ["Analyze token contract 0x833589fCD6eDb6E08f4c7C32D4f71b54bdA02913"],
+      "inputModes": ["application/json"],
+      "outputModes": ["application/json"],
+      "price": "$0.02"
+    },
+    {
+      "id": "eth-gas",
+      "name": "ETH Gas Prices",
+      "description": "Current Ethereum gas prices from the live mempool. Returns gas prices in gwei for slow, standard, fast, and instant categories.",
+      "tags": ["data", "gas", "ethereum", "prices"],
+      "examples": ["Get current gas prices"],
+      "inputModes": ["text/plain"],
+      "outputModes": ["application/json"],
+      "price": "$0.001"
+    },
+    {
+      "id": "gas-router",
+      "name": "Gas Router",
+      "description": "Finds the optimal route for gas token swaps across Base liquidity. Returns recommended swap path with estimated gas savings.",
+      "tags": ["data", "gas", "router", "optimization"],
+      "examples": ["Find optimal gas route for 0.1 ETH on Base"],
+      "inputModes": ["application/json"],
+      "outputModes": ["application/json"],
+      "price": "$0.005"
+    },
+    {
+      "id": "market-overview",
+      "name": "Market Overview",
+      "description": "Aggregated market data including top movers, trending tokens, volume leaders, and market sentiment indicators across Base and Ethereum.",
+      "tags": ["data", "market", "crypto", "overview"],
+      "examples": ["Get market overview"],
+      "inputModes": ["text/plain"],
+      "outputModes": ["application/json"],
+      "price": "$0.02"
+    },
+    {
+      "id": "trending",
+      "name": "Trending Tokens",
+      "description": "Real-time trending tokens on Base network ranked by volume, social activity, and price momentum. Returns top 20 trending tokens with key metrics.",
+      "tags": ["data", "trending", "tokens", "base"],
+      "examples": ["Get trending tokens on Base"],
+      "inputModes": ["text/plain"],
+      "outputModes": ["application/json"],
+      "price": "$0.01"
+    },
+    {
+      "id": "base-stats",
+      "name": "Base Network Stats",
+      "description": "Live Base network statistics including TVL, TPS, active addresses, transaction count, and bridge volumes.",
+      "tags": ["data", "base", "network", "stats"],
+      "examples": ["Get Base network stats"],
+      "inputModes": ["text/plain"],
+      "outputModes": ["application/json"],
+      "price": "$0.01"
+    },
+    {
+      "id": "code-review",
+      "name": "Smart Contract Code Review",
+      "description": "Security-focused review of Solidity smart contract source code. Identifies vulnerabilities, centralization risks, and logic flaws.",
+      "tags": ["security", "code", "review", "solidity"],
+      "examples": ["Review this Solidity contract for vulnerabilities"],
+      "inputModes": ["application/json"],
+      "outputModes": ["application/json"],
+      "price": "$0.05"
+    },
+    {
+      "id": "reason",
+      "name": "Deep Reasoning",
+      "description": "Step-by-step reasoning and analysis for complex blockchain and security problems. Provides structured reasoning chains with evidence.",
+      "tags": ["reasoning", "analysis", "blockchain", "security"],
+      "examples": ["Why did this transaction revert? 0xabc123"],
+      "inputModes": ["application/json"],
+      "outputModes": ["application/json"],
+      "price": "$0.10"
+    },
+    {
+      "id": "synthesize",
+      "name": "Data Synthesis",
+      "description": "Multi-source data synthesis combining on-chain data, market data, and security analysis into a unified intelligence report. High-demand data product.",
+      "tags": ["data", "synthesis", "intelligence", "analysis"],
+      "examples": ["Synthesize all available data on token 0x1234"],
+      "inputModes": ["application/json"],
+      "outputModes": ["application/json"],
+      "price": "$0.05"
+    },
+    {
+      "id": "fetch",
+      "name": "Web Automation",
+      "description": "Automated web data fetching and extraction for agents. Fetches and returns structured data from any URL. High-demand action endpoint.",
+      "tags": ["data", "web", "fetch", "automation"],
+      "examples": ["Fetch the latest Ethereum news from defillama.com"],
+      "inputModes": ["application/json"],
+      "outputModes": ["application/json"],
+      "price": "$0.02"
+    }
+  ]
+}
