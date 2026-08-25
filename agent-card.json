@@ -6,9 +6,95 @@
   "settlement_chain_id": "8453",
   "settlement_asset": "0x833589fCD6eDb6E08f4c7C32D4f71b54bdA02913",
   "services": {
-    "generate_report": {
-      "price_usdc": "0.10",
-      "endpoint": "/api/v1/generate-report"
+    "honeypot_check": {
+      "price_usdc": "0.25",
+      "endpoint": "/api/honeypot-check",
+      "description": "Token honeypot and rug-pull detection via bytecode analysis"
+    },
+    "address_risk": {
+      "price_usdc": "0.25",
+      "endpoint": "/api/address-risk",
+      "description": "Wallet address risk scoring (0-100)"
+    },
+    "wallet_forensics": {
+      "price_usdc": "0.25",
+      "endpoint": "/api/wallet-forensics",
+      "description": "Deep wallet forensic analysis"
+    },
+    "approval_risk": {
+      "price_usdc": "0.25",
+      "endpoint": "/api/approval-risk",
+      "description": "Scan wallet for dangerous token approvals"
+    },
+    "pre_trade_check": {
+      "price_usdc": "1.00",
+      "endpoint": "/api/pre-trade-check",
+      "description": "Pre-trade security analysis"
+    },
+    "agent_preflight": {
+      "price_usdc": "2.50",
+      "endpoint": "/api/agent-preflight",
+      "description": "Full agent transaction risk assessment"
+    },
+    "captcha_solve": {
+      "price_usdc": "0.01",
+      "endpoint": "/api/captcha-solve",
+      "description": "CAPTCHA solving for AI agents"
+    },
+    "code_review": {
+      "price_usdc": "0.25",
+      "endpoint": "/api/code-review",
+      "description": "Solidity smart contract security review"
+    },
+    "eth_gas": {
+      "price_usdc": "0.00",
+      "endpoint": "/api/eth-gas",
+      "description": "Current gas prices on Base (FREE)"
+    },
+    "trending": {
+      "price_usdc": "0.001",
+      "endpoint": "/api/trending",
+      "description": "Trending tokens from DexScreener"
+    },
+    "base_stats": {
+      "price_usdc": "0.001",
+      "endpoint": "/api/base-stats",
+      "description": "Base L2 network statistics"
+    },
+    "crypto_price": {
+      "price_usdc": "0.001",
+      "endpoint": "/api/crypto-price",
+      "description": "Real-time price for any crypto ticker"
+    },
+    "market_overview": {
+      "price_usdc": "0.001",
+      "endpoint": "/api/market-overview",
+      "description": "Aggregated crypto market data"
+    },
+    "fetch": {
+      "price_usdc": "0.001",
+      "endpoint": "/api/fetch",
+      "description": "Web scraping: fetch any URL as markdown"
+    },
+    "reason": {
+      "price_usdc": "1.00",
+      "endpoint": "/api/reason",
+      "description": "Deep reasoning and decision analysis"
+    },
+    "research": {
+      "price_usdc": "1.00",
+      "endpoint": "/api/research",
+      "description": "Full research report with citations"
+    },
+    "synthesize": {
+      "price_usdc": "0.001",
+      "endpoint": "/api/synthesize",
+      "description": "AI data synthesis"
+    },
+    "web_search": {
+      "price_usdc": "0.05",
+      "endpoint": "/api/web-search",
+      "description": "Web search for AI agents"
     }
   },
   "url": "https://economic-agent-369.freysa.dev",
